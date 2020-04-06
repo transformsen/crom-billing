@@ -1,0 +1,64 @@
+@import './varaiable';
+
+.mat-tab-group.mat-accent .mat-ink-bar, .mat-tab-nav-bar.mat-accent .mat-ink-bar{
+    background-color: $white;
+}
+.mat-tab-header{
+    padding-left: 20px;
+}
+.mat-tab-group.mat-background-primary .mat-tab-header, .mat-tab-group.mat-background-primary .mat-tab-links, .mat-tab-group.mat-background-primary .mat-tab-header-pagination, .mat-tab-nav-bar.mat-background-primary .mat-tab-header, .mat-tab-nav-bar.mat-background-primary .mat-tab-links, .mat-tab-nav-bar.mat-background-primary .mat-tab-header-pagination{
+    background-color: $primary-blue;
+}
+
+.mat-tab-label-container .mat-ink-bar{
+    height: 5px;
+}
+mat-paginator{
+    .mat-paginator-container{
+        justify-content: flex-start;
+    }
+}
+
+.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary{
+    border: none;
+}
+
+mat-list mat-list-item:not(:last-child){
+    border-bottom: 1px solid;
+    border-bottom-color: $content-outerborder-gray;
+}
+
+mat-card{
+    border: 1px solid;
+    border-color: $content-outerborder-gray;
+}
+
+.mat-expansion-panel{
+    border: 1px solid;
+    border-color: $content-outerborder-gray;
+}
+
+.mat-card-header .mat-card-title{
+    font-size: 24px;
+}
+
+mat-paginator .mat-button.mat-accent[disabled], .mat-button.mat-primary[disabled], .mat-button.mat-warn[disabled], .mat-button[disabled][disabled], .mat-icon-button.mat-accent[disabled], .mat-icon-button.mat-primary[disabled], .mat-icon-button.mat-warn[disabled], .mat-icon-button[disabled][disabled], .mat-stroked-button.mat-accent[disabled], .mat-stroked-button.mat-primary[disabled], .mat-stroked-button.mat-warn[disabled], .mat-stroked-button[disabled][disabled]{
+    background-color: #ffffff;
+    color: rgba(0, 0, 0, 0.26);
+}
+
+mat-paginator .mat-button.mat-accent[enabled], .mat-button.mat-primary[enabled], .mat-button.mat-warn[enabled], .mat-button[enabled][enabled], .mat-icon-button.mat-accent[enabled], .mat-icon-button.mat-primary[enabled], .mat-icon-button.mat-warn[enabled], .mat-icon-button[enabled][enabled], .mat-stroked-button.mat-accent[enabled], .mat-stroked-button.mat-primary[enabled], .mat-stroked-button.mat-warn[enabled], .mat-stroked-button[enabled][enabled]{
+    background-color: #ffffff;
+    color: rgba(0, 0, 0, 0.897);
+}
+
+.mat-card:not([class*=mat-elevation-z]){
+    box-shadow: none;
+}
+.mat-expansion-panel:not([class*=mat-elevation-z]){
+    box-shadow: none;
+}
+
+.content-margin .mat-list-base .mat-list-item .mat-list-item-content, .mat-list-base .mat-list-option .mat-list-item-content{
+    justify-content: space-between;
+  }

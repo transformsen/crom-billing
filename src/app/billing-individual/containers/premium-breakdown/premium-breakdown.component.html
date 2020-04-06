@@ -1,0 +1,350 @@
+<div class="premium-mat-expansion-panel">
+    <div class="page-heading content-margin">Future Rate</div>
+    <mat-expansion-panel class="content-margin">
+        <mat-expansion-panel-header [collapsedHeight]="'113px'" [expandedHeight]="'113px'">
+            <mat-panel-title>
+                <mat-list>
+                    <mat-list-item>
+                        <app-section-icon mat-list-icon [(selection)]="selectStates.currentRate.parent">
+                        </app-section-icon>
+                        <div mat-line class="detail-item">
+                            Eligibility: <span class="sb">{{futureRate.eligibilityBeginDate}} -
+                                {{futureRate.eligibilityEndDate}}</span>
+                        </div>
+                        <div mat-line class="detail-item">
+                            Product Name: <span class="sb">{{futureRate.productName}}</span>
+                        </div>
+                        <div mat-line class="detail-item">
+                            Market Segment:  <span class="sb">{{futureRate.marketSegment}}</span>
+                        </div>
+
+                    </mat-list-item>
+                </mat-list>
+            </mat-panel-title>
+            <mat-panel-description>
+                <mat-list>
+                    <mat-list-item>
+                        <div mat-line class="detail-item">
+                            Total Premium
+                        </div>
+                        <div mat-line class="detail-item">
+                            <span class="sb">{{futureRate.totalPremium | currency}}</span>
+                        </div>
+                        <div mat-line>
+                            <a mat-stroked-button class="nagivation-link">Open Rate Sheet</a>
+                        </div>
+                    </mat-list-item>
+                </mat-list>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-list>
+            <mat-list-item *ngFor="let item of futureRate.policyMemberDetails">
+
+                <div class="body-content" fxLayout="row">
+                    <app-section-icon class="icon" [(selection)]="selectStates.currentRate[item.firstName]">
+                    </app-section-icon>
+                    <div>
+                        <div>
+                            <a mat-stroked-button class="nagivation-link">
+                                {{item.firstName}} {{item.middleName}} {{item.lastName}}
+                            </a>
+                        </div>
+                        <div>
+                            {{item.memberStatus}}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="body-content">
+                    <div>
+                        Rate Area
+                    </div>
+                    <div>
+                        {{item.rateArea}}
+                    </div>
+                </div>
+                <div class="body-content">
+                    <div>
+                        Tobacco Status
+                    </div>
+                    <div>
+                        {{item.tobaccoStatus}}
+                    </div>
+                </div>
+                <div class="body-content content-left">
+                    <div class="sb">
+                        Premium: {{item.memberPremiumTotal | currency}}
+                    </div>
+                    <div>
+                        Medical Rate: {{item.medicalRate | currency}}
+                    </div>
+                    <div>
+                        Dental Rate: {{item.dentalRate | currency}}
+                    </div>
+                    <div>
+                        Vision Rate: {{item.visionRate | currency}}
+                    </div>
+                    <div>
+                        Contraceptive Rate: {{item.contraceptiveRate | currency}}
+                    </div>
+                    <div>
+                        Service fee: {{item.serviceFee | currency}}
+                    </div>
+                </div>
+            </mat-list-item>
+        </mat-list>
+
+    </mat-expansion-panel>
+</div>
+
+
+<!--Current-->
+<div class="premium-mat-expansion-panel">
+    <div class="page-heading content-margin">Current Rate</div>
+    <mat-expansion-panel class="content-margin">
+        <mat-expansion-panel-header [collapsedHeight]="'113px'" [expandedHeight]="'113px'">
+            <mat-panel-title>
+                <mat-list>
+                    <mat-list-item>
+                        <app-section-icon mat-list-icon [(selection)]="selectStates.pastRate.parent"></app-section-icon>
+                        <div mat-line class="detail-item">
+                            Eligibility: <span class="sb">{{currentRate.eligibilityBeginDate}} -
+                                {{currentRate.eligibilityEndDate}}</span>
+                        </div>
+                        <div mat-line class="detail-item">
+                            Product Name: <span class="sb">{{currentRate.productName}}</span>
+                        </div>
+                        <div mat-line class="detail-item">
+                            Market Segment:  <span class="sb">{{currentRate.marketSegment}}</span>
+                        </div>
+                    </mat-list-item>
+                </mat-list>
+            </mat-panel-title>
+            <mat-panel-description>
+                <mat-list>
+                    <mat-list-item>
+                        <div mat-line class="detail-item">
+                            Total Premium
+                        </div>
+                        <div mat-line class="detail-item">
+                            <span class="sb">{{currentRate.totalPremium | currency}}</span>
+                        </div>
+                        <div mat-line>
+                            <a mat-stroked-button class="nagivation-link">Open Rate Sheet</a>
+                        </div>
+                    </mat-list-item>
+                </mat-list>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-list>
+            <mat-list-item *ngFor="let item of currentRate.policyMemberDetails">
+                <div class="body-content" fxLayout="row">
+                    <app-section-icon class="icon" mat-list-icon [(selection)]="selectStates.pastRate[item.firstName]">
+                    </app-section-icon>
+                    <div>
+                        <div>
+                            <a mat-stroked-button class="nagivation-link">
+                                {{item.firstName}} {{item.middleName}} {{item.lastName}}
+                            </a>
+                        </div>
+                        <div>
+                            {{item.memberStatus}}
+                        </div>
+                    </div>
+                </div>
+                <div class="body-content">
+                    <div>
+                        Rate Area
+                    </div>
+                    <div>
+                        {{item.rateArea}}
+                    </div>
+                </div>
+                <div class="body-content">
+                    <div>
+                        Tobacco Status
+                    </div>
+                    <div>
+                        {{item.tobaccoStatus}}
+                    </div>
+                </div>
+                <div class="body-content content-left">
+                    <div class="sb">
+                        Premium: {{item.memberPremiumTotal | currency}}
+                    </div>
+                    <div>
+                        Medical Rate: {{item.medicalRate | currency}}
+                    </div>
+                    <div>
+                        Dental Rate: {{item.dentalRate | currency}}
+                    </div>
+                    <div>
+                        Vision Rate: {{item.visionRate | currency}}
+                    </div>
+                    <div>
+                        Contraceptive Rate: {{item.contraceptiveRate | currency}}
+                    </div>
+                    <div>
+                        Service fee: {{item.serviceFee | currency}}
+                    </div>
+                </div>
+            </mat-list-item>
+        </mat-list>
+
+    </mat-expansion-panel>
+</div>
+
+
+<!--Past-->
+<div class="premium-mat-expansion-panel">
+    <div class="page-heading content-margin">Past Rate</div>
+    <mat-expansion-panel class="content-margin" [expanded]="'true'">
+        <mat-expansion-panel-header [collapsedHeight]="'113px'" [expandedHeight]="'113px'">
+            <mat-panel-title>
+                <mat-list>
+                    <mat-list-item>
+                        <app-section-icon mat-list-icon [(selection)]="selectStates.featureRate"></app-section-icon>
+                        <div mat-line class="detail-item">
+                            Eligibility: <span class="sb">{{previousRate.eligibilityBeginDate}} -
+                                {{previousRate.eligibilityEndDate}}</span>
+                        </div>
+                        <div mat-line class="detail-item">
+                            Product Name: <span class="sb">{{previousRate.productName}}</span>
+                        </div>
+                        <div mat-line class="detail-item">
+                            Market Segment:  <span class="sb">{{previousRate.marketSegment}}</span>
+                        </div>
+                    </mat-list-item>
+                </mat-list>
+            </mat-panel-title>
+            <mat-panel-description>
+                <mat-list>
+                    <mat-list-item>
+                        <div mat-line class="detail-item">
+                            Total Premium
+                        </div>
+                        <div mat-line class="detail-item">
+                            <span class="sb">{{previousRate.totalPremium | currency}}</span>
+                        </div>
+                        <div mat-line>
+                            <a mat-stroked-button class="nagivation-link">Open Rate Sheet</a>
+                        </div>
+                    </mat-list-item>
+                </mat-list>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-list>
+            <mat-list-item *ngFor="let item of previousRate.policyMemberDetails">
+                <div class="body-content" fxLayout="row">
+                    <app-section-icon mat-list-icon class="icon" [(selection)]="selectStates.featureRate">
+                    </app-section-icon>
+                    <div>
+                        <div>
+                            <a mat-stroked-button class="nagivation-link">
+                                {{item.firstName}} {{item.middleName}} {{item.lastName}}
+                            </a>
+                        </div>
+                        <div>
+                            {{item.memberStatus}}
+                        </div>
+                    </div>
+                </div>
+                <div class="body-content">
+                    <div>
+                        Rate Area
+                    </div>
+                    <div>
+                        {{item.rateArea}}
+                    </div>
+                </div>
+                <div class="body-content">
+                    <div>
+                        Tobacco Status
+                    </div>
+                    <div>
+                        {{item.tobaccoStatus}}
+                    </div>
+                </div>
+                <div class="body-content content-left">
+                    <div class="sb">
+                        Premium: {{item.memberPremiumTotal | currency}}
+                    </div>
+                    <div>
+                        Medical Rate: {{item.medicalRate | currency}}
+                    </div>
+                    <div>
+                        Dental Rate: {{item.dentalRate | currency}}
+                    </div>
+                    <div>
+                        Vision Rate: {{item.visionRate | currency}}
+                    </div>
+                    <div>
+                        Contraceptive Rate: {{item.contraceptiveRate | currency}}
+                    </div>
+                    <div>
+                        Service fee: {{item.serviceFee | currency}}
+                    </div>
+                </div>
+
+            </mat-list-item>
+        </mat-list>
+
+    </mat-expansion-panel>
+</div>
+<div class="other-tems">
+    <mat-list>
+        <mat-list-item *ngFor="let item of otherPbRates">
+            <div fxLayout="row" class="body-content">
+                <app-section-icon mat-list-icon class="icon" [(selection)]="selectStates.featureRate">
+                </app-section-icon>
+
+                <div>
+                    <div>
+                        <a mat-stroked-button class="nagivation-link">
+                            {{item.firstName}} {{item.middleName}} {{item.lastName}}
+                        </a>
+                    </div>
+                    <div>
+                        {{item.memberStatus}}
+                    </div>
+                </div>
+            </div>
+            <div class="body-content">
+                <div>
+                    Rate Area
+                </div>
+                <div>
+                    {{item.rateArea}}
+                </div>
+            </div>
+            <div class="body-content">
+                <div>
+                    Tobacco Status
+                </div>
+                <div>
+                    {{item.tobaccoStatus}}
+                </div>
+            </div>
+            <div class="body-content content-left">
+                <div class="sb">
+                    Premium: {{item.memberPremiumTotal | currency}}
+                </div>
+                <div>
+                    Medical Rate: {{item.medicalRate | currency}}
+                </div>
+                <div>
+                    Dental Rate: {{item.dentalRate | currency}}
+                </div>
+                <div>
+                    Vision Rate: {{item.visionRate | currency}}
+                </div>
+                <div>
+                    Contraceptive Rate: {{item.contraceptiveRate | currency}}
+                </div>
+                <div>
+                    Service fee: {{item.serviceFee | currency}}
+                </div>
+            </div>
+        </mat-list-item>
+    </mat-list>
+</div>

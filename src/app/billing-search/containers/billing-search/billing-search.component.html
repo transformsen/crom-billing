@@ -1,0 +1,13 @@
+<div class="header">Billing</div>
+<mat-tab-group [color]="'accent'" [backgroundColor]="'primary'">
+    <mat-tab label="INDIVIDUAL">
+        <ng-template matTabContent>
+            <app-billing-search-individual></app-billing-search-individual>
+          </ng-template>
+    </mat-tab>
+    <mat-tab label="GROUP">
+        <ng-template matTabContent>
+            <app-billing-search-group></app-billing-search-group>
+          </ng-template>
+    </mat-tab>
+  </mat-tab-group>

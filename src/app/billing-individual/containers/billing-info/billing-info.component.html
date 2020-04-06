@@ -1,0 +1,476 @@
+<div class="page-heading content-margin">
+  {{individualInfo.policyHolder}}
+</div>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between" class="content-margin container-1">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Current Billing Information</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list *ngIf="individualInfo">
+        <mat-list-item>
+          <mat-icon mat-list-icon></mat-icon>
+          <div mat-line>Policyholder</div>
+          <div mat-line>
+            <a mat-stroked-button class="nagivation-link" target="blank"
+              href="{{'https://' + BaseDomain + '/appid='+ AppId + '&pagetype=entityrecord&etn=wm_policy&id=' + policyHolderGuid }}">
+              {{individualInfo.policyHolder}}
+            </a>
+          </div>
+
+        </mat-list-item>
+        <mat-list-item>
+          <div mat-list-icon></div>
+          <div mat-line>Policy ID</div>
+          <div mat-line>
+            <a mat-stroked-button class="nagivation-link" target="blank"
+              href="{{'https://' + BaseDomain + '/appid='+ AppId+'&pagetype=entityrecord&etn=wm_policy&id=' + individualInfo.policyId }}">
+              {{individualInfo.policyId}}
+            </a>
+          </div>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon></mat-icon>
+          <div mat-line>Subgroup Name</div>
+          <div mat-line>
+            <a mat-stroked-button class="nagivation-link" target="blank"
+              href="{{'https://' + BaseDomain + '/appid='+ AppId+'&pagetype=entityrecord&etn=wm_policy&id=' + individualInfo.policyId }}">
+            {{individualInfo.subgroupName}}
+            </a>
+          </div>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon></mat-icon>
+          <div mat-line>Billing Address</div>
+          <div mat-line>
+            {{individualInfo.billingAddress.streetAddr1}} {{individualInfo.billingAddress.streetAddr2}}
+            {{individualInfo.billingAddress.city}} {{individualInfo.billingAddress.state}}
+            {{individualInfo.billingAddress.zip}}
+          </div>
+        </mat-list-item>
+        <mat-list-item>
+          <app-section-icon mat-list-icon [(selection)]="selectStates.billingFrequency"></app-section-icon>
+          <div mat-line>Billing Frequency</div>
+          <div mat-line>
+            {{individualInfo.billingFrequency}}
+          </div>
+        </mat-list-item>
+        <mat-list-item>
+          <app-section-icon mat-list-icon [(selection)]="selectStates.statementType"></app-section-icon>
+          <div mat-line>Statement Type</div>
+          <div mat-line>
+            {{individualInfo.statementType}}
+          </div>
+        </mat-list-item>
+        <mat-list-item>
+          <app-section-icon mat-list-icon [(selection)]="selectStates.paymentDeferredDate"></app-section-icon>
+          <div mat-line>Payment Deferred Date</div>
+          <div mat-line>
+            {{individualInfo.paymentDeferredDate}}
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Current Billing Status -->
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Current Billing Status</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list *ngIf="individualInfo">
+        <mat-list-item>
+          <app-section-icon mat-list-icon [(selection)]="selectStates.suspendBilling"></app-section-icon>
+          <div mat-line>Suspended Billing</div>
+          <div mat-line>
+            {{individualInfo.suspendBilling}}
+          </div>
+
+        </mat-list-item>
+        <mat-list-item>
+          <app-section-icon mat-list-icon [(selection)]="selectStates.netAmountDue"></app-section-icon>
+          <div mat-line>Net Amount Due</div>
+          <div mat-line>
+            {{individualInfo.netAmountDue | currency}}
+          </div>
+        </mat-list-item>
+        <mat-list-item>
+          <app-section-icon mat-list-icon [(selection)]="selectStates.currentSuspense"></app-section-icon>
+          <div mat-line>Current Suspense</div>
+          <div mat-line>
+            {{individualInfo.currentSuspense | currency}}
+          </div>
+        </mat-list-item>
+        <mat-list-item>
+          <app-section-icon mat-list-icon [(selection)]="selectStates.eligibilityThroughDate"></app-section-icon>
+          <div mat-line>Eligibility Through Date</div>
+          <div mat-line>
+            {{individualInfo.eligibilityThroughDate}}
+          </div>
+        </mat-list-item>
+        <mat-list-item>
+          <app-section-icon mat-list-icon [(selection)]="selectStates.aptcEndDate"></app-section-icon>
+          <div mat-line>APTC Extended Grace Period End Date</div>
+          <div mat-line>
+            {{individualInfo.aptcEndDate}}
+          </div>
+        </mat-list-item>
+        <mat-list-item>
+          <app-section-icon mat-list-icon [(selection)]="selectStates.marketSegment"></app-section-icon>
+          <div mat-line>Market Segment</div>
+          <div mat-line>
+            {{individualInfo.marketSegment}}
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Total Premium Paid By Year -->
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Total Premium Paid By Year</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list *ngIf="individualInfo">
+        <mat-list-item *ngFor="let yearInfo of individualInfo.totalPremiumsPaidByYear">
+          <app-section-icon mat-list-icon [(selection)]="selectStates.years[yearInfo.year]"></app-section-icon>
+          <div mat-line>{{yearInfo.year}}</div>
+          <div mat-line>
+            {{yearInfo.amount | currency}}
+          </div>
+        </mat-list-item>
+      </mat-list>
+      <mat-card-actions fxLayout="row" fxLayoutAlign="center">
+        <button mat-stroked-button color="primary" (click)="viewBreakDown.emit()">
+          VIEW BREAKDOWN
+        </button>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+</div>
+<mat-card class="content-margin">
+  <mat-card-header>
+    <mat-card-title>Billing Notes</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="search-result-table">
+      <table mat-table [dataSource]="billingNotesdataSource">
+
+        <!-- modifiedDate Column -->
+        <ng-container matColumnDef="modifiedDate">
+          <th mat-header-cell *matHeaderCellDef> Modified Date </th>
+          <td mat-cell *matCellDef="let element">
+            {{element.modifiedDate}}
+          </td>
+        </ng-container>
+
+        <!-- description Column -->
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef> Description </th>
+          <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+        </ng-container>
+
+        <!-- noteFromBilling Column -->
+        <ng-container matColumnDef="noteFromBilling">
+          <th mat-header-cell *matHeaderCellDef> Note From Billing </th>
+          <td mat-cell *matCellDef="let element"> {{element.noteFromBilling}} </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="billingNotesColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: billingNotesColumns;"></tr>
+      </table>
+
+      <mat-paginator #billingNotesPaginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>
+<!--Bills-->
+<mat-card class="content-margin">
+  <mat-card-header>
+    <mat-card-title>Bills</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="search-result-table">
+      <table mat-table [dataSource]="billsdataSource">
+         <!-- invoiceNumber Column -->
+         <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef> 
+            <mat-icon matTooltip="Info about the Billing" class="help-icon">help_outline</mat-icon>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <app-section-icon mat-list-icon [(selection)]="selectStates.bills[element.invoiceNumber]"></app-section-icon>
+          </td>
+        </ng-container>
+        
+        <!-- invoiceNumber Column -->
+        <ng-container matColumnDef="invoiceNumber">
+          <th mat-header-cell *matHeaderCellDef> Invoice Number </th>
+          <td mat-cell *matCellDef="let element">
+            <a mat-stroked-button class="nagivation-link">{{element.invoiceNumber}}</a>
+          </td>
+        </ng-container>
+
+        <!-- invoiceCreateDate Column -->
+        <ng-container matColumnDef="invoiceCreateDate">
+          <th mat-header-cell *matHeaderCellDef> Invoice Create Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.invoiceCreateDate}} </td>
+        </ng-container>
+
+        <!-- billingPeriodBeginDate Column -->
+        <ng-container matColumnDef="billingPeriodBeginDate">
+          <th mat-header-cell *matHeaderCellDef> Billing Period Begin Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.billingPeriodBeginDate}} </td>
+        </ng-container>
+
+        <!-- billingPeriodEndDate Column -->
+        <ng-container matColumnDef="billingPeriodEndDate">
+          <th mat-header-cell *matHeaderCellDef> Billing Period End Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.billingPeriodEndDate}} </td>
+        </ng-container>
+
+        <!-- currentPaymentStatus Column -->
+        <ng-container matColumnDef="currentPaymentStatus">
+          <th mat-header-cell *matHeaderCellDef> Current Payment Status </th>
+          <td mat-cell *matCellDef="let element"> {{element.currentPaymentStatus}} </td>
+        </ng-container>
+
+        <!-- totalAmountBilled Column -->
+        <ng-container matColumnDef="totalAmountBilled">
+          <th mat-header-cell *matHeaderCellDef> Total Amount Billed </th>
+          <td mat-cell *matCellDef="let element"> {{element.totalAmountBilled}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="billsColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: billsColumns;"></tr>
+      </table>
+
+      <mat-paginator #billsPaginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<!--PayMents-->
+<mat-card class="content-margin">
+  <mat-card-header>
+    <mat-card-title>Payments</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="search-result-table">
+      <table mat-table [dataSource]="paymentsdataSource">
+        <!--Select-->
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef> 
+            <mat-icon matTooltip="Info about the Billing" class="help-icon">help_outline</mat-icon>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <app-section-icon mat-list-icon [(selection)]="selectStates.payments[element.createDate]"></app-section-icon>
+          </td>
+        </ng-container>
+        <!-- createDate Column -->
+        <ng-container matColumnDef="createDate">
+          <th mat-header-cell *matHeaderCellDef> Create Date </th>
+          <td mat-cell *matCellDef="let element">
+            {{element.createDate}}
+          </td>
+        </ng-container>
+
+        <!-- receivedDate Column -->
+        <ng-container matColumnDef="receivedDate">
+          <th mat-header-cell *matHeaderCellDef> Received Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.receivedDate}} </td>
+        </ng-container>
+
+        <!-- paymentMethod Column -->
+        <ng-container matColumnDef="paymentMethod">
+          <th mat-header-cell *matHeaderCellDef> Payment Method </th>
+          <td mat-cell *matCellDef="let element"> {{element.paymentMethod}} </td>
+        </ng-container>
+
+        <!-- checkNumber Column -->
+        <ng-container matColumnDef="checkNumber">
+          <th mat-header-cell *matHeaderCellDef> Check Number </th>
+          <td mat-cell *matCellDef="let element"> {{element.checkNumber}} </td>
+        </ng-container>
+
+        <!-- amount Column -->
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef> Amount </th>
+          <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+        </ng-container>
+
+        <!-- memo Column -->
+        <ng-container matColumnDef="memo">
+          <th mat-header-cell *matHeaderCellDef> Memo </th>
+          <td mat-cell *matCellDef="let element"> {{element.memo}} </td>
+        </ng-container>
+
+        <!-- reason Column -->
+        <ng-container matColumnDef="reason">
+          <th mat-header-cell *matHeaderCellDef> Reason </th>
+          <td mat-cell *matCellDef="let element"> {{element.reason}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="paymentsColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: paymentsColumns;"></tr>
+      </table>
+
+      <mat-paginator #paymentsPaginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between" class="content-margin container-2">
+  <!--Deliquency Correspondence-->
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Deliquency Correspondence</mat-card-title>
+      <mat-card-subtitle>
+        <mat-list>
+          <mat-list-item>
+            <app-section-icon mat-list-icon [(selection)]="selectStates.processedDateForTermination"></app-section-icon>
+            <div mat-line>{{processedDateForTermination.label}}</div>
+            <div mat-line>
+              {{processedDateForTermination.value}}
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="search-result-table">
+        <table mat-table [dataSource]="deliquencydataSource">
+           <!--Select-->
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef> 
+            <mat-icon matTooltip="Info about the Billing" class="help-icon">help_outline</mat-icon>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <app-section-icon mat-list-icon [(selection)]="selectStates.deliquency[element.date]"></app-section-icon>
+          </td>
+        </ng-container>
+          <!-- data Column -->
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let element">
+              {{element.date}}
+            </td>
+          </ng-container>
+
+          <!-- description Column -->
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Description </th>
+            <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+          </ng-container>
+
+          <!-- document Column -->
+          <ng-container matColumnDef="document">
+            <th mat-header-cell *matHeaderCellDef> Document </th>
+            <td mat-cell *matCellDef="let element"> 
+              <a mat-stroked-button class="nagivation-link">{{element.document}}</a>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="deliquencyColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: deliquencyColumns;"></tr>
+        </table>
+
+        <mat-paginator #deliquencyPaginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <!--Advanced Premium Tax Credit-->
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Advanced Premium Tax Credit</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="search-result-table">
+        <table mat-table [dataSource]="advancedPremiumdataSource">
+          <!--Select-->
+          <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef> 
+              <mat-icon matTooltip="Info about the Billing" class="help-icon">help_outline</mat-icon>
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <app-section-icon mat-list-icon [(selection)]="selectStates.advancedPremium[element.effectiveDate]"></app-section-icon>
+            </td>
+          </ng-container>
+          <!-- effectiveDate Column -->
+          <ng-container matColumnDef="effectiveDate">
+            <th mat-header-cell *matHeaderCellDef> Effective Date </th>
+            <td mat-cell *matCellDef="let element">
+              {{element.effectiveDate}}
+            </td>
+          </ng-container>
+
+          <!-- terminationDate Column -->
+          <ng-container matColumnDef="terminationDate">
+            <th mat-header-cell *matHeaderCellDef> Termination Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.terminationDate}} </td>
+          </ng-container>
+
+          <!-- amount Column -->
+          <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef> Amount </th>
+            <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="advancedPremiumTaxColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: advancedPremiumTaxColumns;"></tr>
+        </table>
+
+        <mat-paginator #advancedPremiumPaginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+  <!--Discretionary Billing Items (DBI)-->
+  <div class="container-2">
+  <mat-card class="content-margin">
+    <mat-card-header>
+      <mat-card-title>Discretionary Billing Items (DBI)</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="search-result-table">
+        <table mat-table [dataSource]="discretionarydataSource">
+          <!--Select-->
+          <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef> 
+              <mat-icon matTooltip="Info about the Billing" class="help-icon">help_outline</mat-icon>
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <app-section-icon mat-list-icon [(selection)]="selectStates.dib[element.lastUpdate]"></app-section-icon>
+            </td>
+          </ng-container>
+          <!-- lastUpdate Column -->
+          <ng-container matColumnDef="lastUpdate">
+            <th mat-header-cell *matHeaderCellDef> Last Update </th>
+            <td mat-cell *matCellDef="let element">
+              {{element.lastUpdate}}
+            </td>
+          </ng-container>
+
+          <!-- description Column -->
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Description </th>
+            <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+          </ng-container>
+
+          <!-- amount Column -->
+          <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef> Amount </th>
+            <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="discretionaryBillingItemsColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: discretionaryBillingItemsColumns;"></tr>
+        </table>
+
+        <mat-paginator #discretionaryPaginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,35 @@
+.content-margin .mat-list-item {
+    height: auto;
+    padding-bottom: 10px;
+    padding-top: 20px;
+  }
+  .body-content{
+      width: 280px;
+      .sb{
+        font-weight: 600;
+      }
+      .icon{
+        align-self: center;
+        margin-right: 24px;
+      }
+  }
+  .detail-item{
+    .sb{
+        font-weight: 600;
+      }
+  }
+  .content-left{
+      text-align: right;
+  }
+  .page-heading{
+      font-size: 24px;
+  }
+
+  mat-expansion-panel-header .mat-expansion-panel-header-description{
+    flex-grow: 0;
+  }
+  .mat-expansion-panel,  .other-tems{
+    margin-left: 48px;
+    margin-right: 48px;
+    margin-top: 24px;
+  }

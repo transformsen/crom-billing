@@ -1,0 +1,72 @@
+@import './varaiable';
+
+.content-margin {
+  margin-left: 48px;
+  margin-right: 48px;
+  margin-top: 24px;    
+}
+.header{
+    height: 56px;
+    line-height: 56px;
+    padding-left: 48px;
+    color: $white;
+    font-size: 20px;
+    background-color: $secondar-blue;
+    vertical-align: middle;
+}
+
+.page-heading{
+    margin-top: 48px;
+    font-size: 48px;
+    color: $header-color;
+}
+.content-margin-left{
+    margin-left: 48px;
+}
+
+.search-box{
+    width: 299px;
+    height: 56px;
+}
+
+.nagivation-link{
+    border: none !important;
+    color: $link-color !important;
+    padding-left: 0px !important;
+}
+
+.crm-data-table{
+  border: 1px solid $content-outerborder-gray;
+  padding-top: 5px;
+  padding-top: 3px;
+}
+
+.search-result-table{
+    table {
+      width: 100%;
+      th{
+        font-size: 16px;
+        color: $content-color;
+        font-weight: 500;
+      }
+      td{
+        font-size: 14px;
+        color: $content-color;
+      }
+    }
+  }
+  
+  .search-form{
+    margin-top: 24px;
+  }
+  
+  .seach-button{
+    margin-top: 24px;
+  }
+
+  .help-icon{
+    font-size: 20px;
+    color: $primary-blue;
+    cursor: pointer;
+  }
+  

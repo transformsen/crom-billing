@@ -1,0 +1,81 @@
+<div class="content-margin-left">
+  <div class="page-heading">
+    Search
+  </div>
+  <div class="search-form">
+    <form [formGroup]="searchFrom" fxLayout="row" fxLayoutGap="25px" fxLayout.xs="column">
+    <mat-form-field class="search-box" appearance="outline">
+        <input matInput placeholder="Social Security Number" formControlName="ssn" autocomplete="off">
+      </mat-form-field>
+    
+      <mat-form-field class="search-box" appearance="outline">
+        <input matInput placeholder="Policy ID" formControlName="policyId" autocomplete="off">
+      </mat-form-field>  
+    </form>  
+  </div>
+  <div class="seach-button" fxLayout="row" fxLayoutGap="25px" fxLayout.xs="column">
+    <button mat-flat-button color="primary" (click)="search()">
+      <mat-icon>search</mat-icon> SEARCH
+    </button>
+    <button mat-stroked-button color="primary" (click)="reset()">
+      CLEAR ALL
+    </button>
+  </div>
+</div>
+
+<div class="crm-data-table search-result-table content-margin">
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Policy ID Column -->
+    <ng-container matColumnDef="policyId">
+      <th mat-header-cell *matHeaderCellDef> Policy ID </th>
+      <td mat-cell *matCellDef="let element">
+        <a mat-stroked-button class="nagivation-link" [routerLink]="['billing-individual', element.policyId]" [queryParams]="{policyGuid: element.policyGuid, policyHolderGuid: element.policyHolderGuid}">
+          {{element.policyId}}</a>
+      </td>
+    </ng-container>
+
+    <!-- Policy Holder Column -->
+    <ng-container matColumnDef="policyHolder">
+      <th mat-header-cell *matHeaderCellDef> Policy Holder </th>
+      <td mat-cell *matCellDef="let element">
+        <a mat-stroked-button class="nagivation-link" [routerLink]="['billing-individual', element.policyId]" [queryParams]="{policyGuid: element.policyGuid, policyHolderGuid: element.policyHolderGuid}">
+          {{element.policyHolder}}</a> </td>
+    </ng-container>
+
+    <!-- Date Of Birth Column -->
+    <ng-container matColumnDef="dateOfBirth">
+      <th mat-header-cell *matHeaderCellDef> Date Of Birth </th>
+      <td mat-cell *matCellDef="let element"> {{element.dateOfBirth}} </td>
+    </ng-container>
+
+     <!-- Termination Date Column -->
+     <ng-container matColumnDef="effectiveDate">
+      <th mat-header-cell *matHeaderCellDef> Effective Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.effectiveDate}} </td>
+    </ng-container>
+
+    <!-- Termination Date Column -->
+    <ng-container matColumnDef="terminationDate">
+      <th mat-header-cell *matHeaderCellDef> Termination Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.terminationDate}} </td>
+    </ng-container>
+
+    <!-- policyTypeColumn -->
+    <ng-container matColumnDef="policyType">
+      <th mat-header-cell *matHeaderCellDef> Policy Type </th>
+      <td mat-cell *matCellDef="let element"> {{element.policyType}} </td>
+    </ng-container>
+
+    <!-- Group Name  Column -->
+    <ng-container matColumnDef="groupName">
+      <th mat-header-cell *matHeaderCellDef> Group Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.groupName}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

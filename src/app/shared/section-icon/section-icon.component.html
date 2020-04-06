@@ -1,0 +1,10 @@
+<svg *ngIf="!selection" (click)="selectionChange.emit(true)" xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16">
+    <path
+      d="M15-16H0V0H11l4-4V-16ZM1-1V-15H14V-5H10v4Zm10-.414V-4h2.586ZM8-12H7v3H4v1H7v3H8V-8h3V-9H8v-3Z"
+      transform="translate(0 16)" fill="#33a852"/>
+  </svg>
+  <svg *ngIf="selection" (click)="selectionChange.emit(false)" xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16">
+    <path
+      d="M11,16H0V0H15V12l-4,4ZM4.063,8h0L3,9.062l3.211,3.211,6.211-6.211L11.36,5,6.211,10.148,4.063,8Z"
+      fill="#33a852"/>
+  </svg>

@@ -1,0 +1,16 @@
+<div [routerLink]="['/']" class="header">Billing</div>
+<mat-tab-group [selectedIndex]="index" [color]="'accent'" [backgroundColor]="'primary'"
+(selectedIndexChange)="selectTab($event)">
+    <mat-tab label="BILLING INFO">
+        <ng-template matTabContent>
+            <app-billing-info *ngIf="data" [individualInfo]="data" 
+            [policyHolderGuid]="policyHolderGuid"
+            (viewBreakDown)="goToPremiumBreakdown()"></app-billing-info>
+          </ng-template>
+    </mat-tab>
+    <mat-tab label="PREMIMUM BREAKDOWN">
+        <ng-template matTabContent>
+            <app-premium-breakdown *ngIf="data" [individualInfo]="data"></app-premium-breakdown >
+          </ng-template>
+    </mat-tab>
+  </mat-tab-group>
