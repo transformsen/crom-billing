@@ -18,13 +18,16 @@ export class PremiumBreakdownComponent implements OnInit {
   otherPbRates: PremiaumBreakdownDTO[] = [];
 
   selectStates = {
-    featureRate: false,
+    futureRate: {
+      parent: false
+    },
     currentRate: {
       parent: false
     },
     pastRate: {
       parent: false
-    }
+    },
+    otherRate: false
   };
 
   @Input('individualInfo')

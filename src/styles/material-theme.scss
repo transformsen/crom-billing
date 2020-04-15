@@ -62,3 +62,7 @@ mat-paginator .mat-button.mat-accent[enabled], .mat-button.mat-primary[enabled],
 .content-margin .mat-list-base .mat-list-item .mat-list-item-content, .mat-list-base .mat-list-option .mat-list-item-content{
     justify-content: space-between;
   }
+
+  mat-expansion-panel .mat-expansion-panel-body{
+    padding-left: 56px;
+  }

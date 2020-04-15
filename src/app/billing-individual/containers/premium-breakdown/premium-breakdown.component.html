@@ -1,11 +1,13 @@
 <div class="premium-mat-expansion-panel">
     <div class="page-heading content-margin">Future Rate</div>
-    <mat-expansion-panel class="content-margin">
+    <mat-expansion-panel class="content-margin" hideToggle="true" #futurerateexp>
         <mat-expansion-panel-header [collapsedHeight]="'113px'" [expandedHeight]="'113px'">
             <mat-panel-title>
+                <mat-icon class="arrow" *ngIf="!futurerateexp.expanded">keyboard_arrow_down</mat-icon>
+                <mat-icon class="arrow" *ngIf="futurerateexp.expanded">keyboard_arrow_up</mat-icon>
                 <mat-list>
-                    <mat-list-item>
-                        <app-section-icon mat-list-icon [(selection)]="selectStates.currentRate.parent">
+                    <mat-list-item [class.listhighlight]="selectStates.futureRate.parent">
+                        <app-section-icon mat-list-icon [(selection)]="selectStates.futureRate.parent">
                         </app-section-icon>
                         <div mat-line class="detail-item">
                             Eligibility: <span class="sb">{{futureRate.eligibilityBeginDate}} -
@@ -38,7 +40,7 @@
             </mat-panel-description>
         </mat-expansion-panel-header>
         <mat-list>
-            <mat-list-item *ngFor="let item of futureRate.policyMemberDetails">
+            <mat-list-item *ngFor="let item of futureRate.policyMemberDetails" [class.listhighlight]="selectStates.currentRate[item.firstName]">
 
                 <div class="body-content" fxLayout="row">
                     <app-section-icon class="icon" [(selection)]="selectStates.currentRate[item.firstName]">
@@ -101,12 +103,14 @@
 <!--Current-->
 <div class="premium-mat-expansion-panel">
     <div class="page-heading content-margin">Current Rate</div>
-    <mat-expansion-panel class="content-margin">
+    <mat-expansion-panel class="content-margin" hideToggle="true" #currentrateexp>
         <mat-expansion-panel-header [collapsedHeight]="'113px'" [expandedHeight]="'113px'">
             <mat-panel-title>
+                <mat-icon class="arrow" *ngIf="!currentrateexp.expanded">keyboard_arrow_down</mat-icon>
+                <mat-icon class="arrow" *ngIf="currentrateexp.expanded">keyboard_arrow_up</mat-icon>
                 <mat-list>
-                    <mat-list-item>
-                        <app-section-icon mat-list-icon [(selection)]="selectStates.pastRate.parent"></app-section-icon>
+                    <mat-list-item [class.listhighlight]="selectStates.currentRate.parent">
+                        <app-section-icon mat-list-icon [(selection)]="selectStates.currentRate.parent"></app-section-icon>
                         <div mat-line class="detail-item">
                             Eligibility: <span class="sb">{{currentRate.eligibilityBeginDate}} -
                                 {{currentRate.eligibilityEndDate}}</span>
@@ -137,9 +141,10 @@
             </mat-panel-description>
         </mat-expansion-panel-header>
         <mat-list>
-            <mat-list-item *ngFor="let item of currentRate.policyMemberDetails">
+            <mat-list-item *ngFor="let item of currentRate.policyMemberDetails" 
+                [class.listhighlight]="selectStates.currentRate[item.firstName]">
                 <div class="body-content" fxLayout="row">
-                    <app-section-icon class="icon" mat-list-icon [(selection)]="selectStates.pastRate[item.firstName]">
+                    <app-section-icon class="icon" mat-list-icon [(selection)]="selectStates.currentRate[item.firstName]">
                     </app-section-icon>
                     <div>
                         <div>
@@ -198,12 +203,14 @@
 <!--Past-->
 <div class="premium-mat-expansion-panel">
     <div class="page-heading content-margin">Past Rate</div>
-    <mat-expansion-panel class="content-margin" [expanded]="'true'">
+    <mat-expansion-panel class="content-margin" [expanded]="'true'" hideToggle="true" #pastrateexp>
         <mat-expansion-panel-header [collapsedHeight]="'113px'" [expandedHeight]="'113px'">
             <mat-panel-title>
+                <mat-icon class="arrow" *ngIf="!pastrateexp.expanded">keyboard_arrow_down</mat-icon>
+                <mat-icon class="arrow" *ngIf="pastrateexp.expanded">keyboard_arrow_up</mat-icon>
                 <mat-list>
-                    <mat-list-item>
-                        <app-section-icon mat-list-icon [(selection)]="selectStates.featureRate"></app-section-icon>
+                    <mat-list-item [class.listhighlight]="selectStates.pastRate.parent">
+                        <app-section-icon mat-list-icon [(selection)]="selectStates.pastRate.parent"></app-section-icon>
                         <div mat-line class="detail-item">
                             Eligibility: <span class="sb">{{previousRate.eligibilityBeginDate}} -
                                 {{previousRate.eligibilityEndDate}}</span>
@@ -234,9 +241,10 @@
             </mat-panel-description>
         </mat-expansion-panel-header>
         <mat-list>
-            <mat-list-item *ngFor="let item of previousRate.policyMemberDetails">
+            <mat-list-item *ngFor="let item of previousRate.policyMemberDetails" 
+            [class.listhighlight]="selectStates.pastRate[item.firstName]">
                 <div class="body-content" fxLayout="row">
-                    <app-section-icon mat-list-icon class="icon" [(selection)]="selectStates.featureRate">
+                    <app-section-icon mat-list-icon class="icon" [(selection)]="selectStates.pastRate[item.firstName]">
                     </app-section-icon>
                     <div>
                         <div>
@@ -295,7 +303,7 @@
     <mat-list>
         <mat-list-item *ngFor="let item of otherPbRates">
             <div fxLayout="row" class="body-content">
-                <app-section-icon mat-list-icon class="icon" [(selection)]="selectStates.featureRate">
+                <app-section-icon mat-list-icon class="icon" [(selection)]="selectStates.otherRate">
                 </app-section-icon>
 
                 <div>

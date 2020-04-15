@@ -43,6 +43,8 @@ export class BillingIndividualComponent implements OnInit {
     .subscribe((resp) => {
       this.data = resp;
       this.title.setTitle(`${this.data.policyHolder} - Billing`);
+    }, (error) => {
+      console.error('Error while fetching IndividualInfo info', error);
     });
   }
   goToPremiumBreakdown(){

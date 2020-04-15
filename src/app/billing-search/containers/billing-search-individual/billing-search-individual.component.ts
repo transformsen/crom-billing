@@ -41,12 +41,16 @@ export class BillingSearchIndividualComponent implements OnInit, OnDestroy {
 
   reset(){
     this.searchFrom.reset();
+    this.search();
   }
 
   getData(){
     this.subscriptions.add(this.billingSearchService.getIndividualBillings(this.searchFrom.value)
     .subscribe((data) => {
       this.dataSource.data = data;
+    },
+    (error) => {
+      console.error('Error while fetching IndividualBillings', error);
     }));
   }
 

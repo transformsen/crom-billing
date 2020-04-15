@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { BillingIndividualInfo } from 'src/app/models/billing-individual-info';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { SelectionModel } from '@angular/cdk/collections';
 
 const { AppId, BaseDomain } = environment;
 @Component({
@@ -25,6 +26,7 @@ export class BillingInfoComponent implements OnInit {
   ];
   billingNotesdataSource = new MatTableDataSource<any>([]);
   @ViewChild('billingNotesPaginator', {static: true}) billingNotesPaginator: MatPaginator;
+  selection = new SelectionModel<any>(true, []);
 
   billsdataSource = new MatTableDataSource<any>([]);
   @ViewChild('billsPaginator', {static: true}) billsPaginator: MatPaginator;

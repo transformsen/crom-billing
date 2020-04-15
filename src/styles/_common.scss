@@ -37,8 +37,8 @@
 
 .crm-data-table{
   border: 1px solid $content-outerborder-gray;
-  padding-top: 5px;
   padding-top: 3px;
+  padding-bottom: 3px;
 }
 
 .search-result-table{
@@ -70,3 +70,13 @@
     cursor: pointer;
   }
   
+ .mat-row.highlighted {
+    td.mat-cell{
+      color: $green;
+    }
+  }
+ .listhighlight{
+   div{
+    color: $green;
+   }
+ }

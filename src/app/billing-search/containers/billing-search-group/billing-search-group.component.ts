@@ -41,12 +41,15 @@ export class BillingSearchGroupComponent implements OnInit, OnDestroy {
 
   reset(){
     this.searchFrom.reset();
+    this.search();
   }
 
   getData(){
     this.subscriptions.add(this.billingSearchService.getGroupBillings(this.searchFrom.value)
     .subscribe((data) => {
       this.dataSource.data = data.results;
+    }, (error) => {
+      console.error('Error while fetching GroupBillings', error);
     }));
   }
 

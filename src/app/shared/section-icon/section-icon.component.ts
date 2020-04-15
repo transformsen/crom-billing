@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class SectionIconComponent implements OnInit {
 
   @Input() selection = false;
+  @Input() arialabel = false;
   @Output() selectionChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() { }
